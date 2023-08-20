@@ -1,0 +1,21 @@
+.brandName {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	font-size: 30px;
+	font-weight: 500;
+	background: -webkit-linear-gradient(#eee, #83b5d8);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: 699px) {
+	.brandName {
+		font-size: 18px;
+		margin-left: -10px;
+	}
+
+	.phoneAddNewCourse {
+		font-size: 12px !important;
+	}
+}
