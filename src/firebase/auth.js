@@ -9,13 +9,7 @@ import {
 	sendPasswordResetEmail,
 } from 'firebase/auth';
 
-import {
-	getFirestore,
-	collection,
-	getDoc,
-	setDoc,
-	doc,
-} from 'firebase/firestore';
+import { getFirestore, collection, getDoc, setDoc, doc } from 'firebase/firestore';
 
 import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from 'firebase/storage';
 
@@ -47,6 +41,7 @@ async function handleLoginForm(e, setMsg, setIsApiLoading) {
 					JSON.stringify({
 						userName: cred?.user?.displayName,
 						email: docSnap.data()?.email,
+						registration_no: docSnap.data()?.registration_no,
 						userId: cred?.user?.uid,
 					})
 				);
@@ -160,9 +155,7 @@ async function handleForgetPassword(e, setMsg, setIsOTPApiLoading) {
 		}
 	}
 
-	var maskid = email.replace(/^(.)(.*)(.@.*)$/,
-		(_, a, b, c) => a + b.replace(/./g, '*') + c
-	);
+	var maskid = email.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => a + b.replace(/./g, '*') + c);
 
 	sendPasswordResetEmail(auth, email)
 		.then(() => {
@@ -173,8 +166,7 @@ async function handleForgetPassword(e, setMsg, setIsOTPApiLoading) {
 			setIsOTPApiLoading(false);
 			setMsg(error.code);
 			console.log(error.code);
-		})
-
+		});
 }
 
 function handleUserState(currentPage) {

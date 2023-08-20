@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { handleUserState } from '../firebase/auth';
-import { getUserAllNoteData, addNewCourse, updateCourseDetails, deleteData } from '../firebase//home.js';
+import { getAllTableData, addNewCourse, updateCourseDetails, deleteData } from '../firebase//home.js';
 
 import NavBar from '../components/Bar/NavBar/NavBar';
 import FootBar from '../components/Bar/Footer/Footer';
@@ -9,23 +9,16 @@ import ModalWrapper from '../components/Modal/ModalWrapper.js';
 import Loader from '../components/Loader/Loader';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import ConfirmationDialog from '../components/ConfirmationDialog/ConfirmationDialog.js';
+import Toolbar from '@mui/material/Toolbar';
 
 import '../styles/homePage.css';
 
 import photoNotAvailable from '../images/photoNotAvailable.jpeg';
 
-import Toolbar from '@mui/material/Toolbar';
-
 function HomePage() {
 	const [msg, setMsg] = useState({ text: '', type: '' });
-	const [isGetLoading, setIsGetLoading] = useState(true);
-	const [isSaveLoading, setIsSaveLoading] = useState(false);
-	const [isAddBtnLoading, setIsAddBtnLoading] = useState(false);
-	const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(false);
-	const [allCourses, setAllCourses] = useState([]);
-	const [OpenCourse, setOpenCourse] = useState({});
-	const [isNotesModalOpen, setIsNotesModalOpen] = useState({ state: false, type: '' });
-	const [imageFileRef, setImageFileRef] = useState(null);
+	const [isGetLoading, setIsGetLoading] = useState(false);
+	const [tableAllData, setTableAllData] = useState([]);
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -40,126 +33,46 @@ function HomePage() {
 
 	useEffect(() => {
 		handleUserState('homePage');
-		getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown);
+		getAllTableData(setTableAllData, setIsGetLoading, handleMsgShown);
 	}, [handleMsgShown]);
-
-	const handleModalToggle = useCallback(
-		(modalType) => {
-			setOpenCourse({});
-			setImageFileRef(null);
-			setIsNotesModalOpen({ state: !isNotesModalOpen?.state, type: modalType });
-		},
-		[isNotesModalOpen]
-	);
-
-	const handleAddNewCourseBtnClick = useCallback(() => {
-		addNewCourse(OpenCourse, imageFileRef, setIsNotesModalOpen, setIsAddBtnLoading, handleMsgShown);
-	}, [OpenCourse, handleMsgShown, imageFileRef]);
-
-	const handleEditBtn = useCallback(
-		(index) => {
-			handleModalToggle('edit');
-			setOpenCourse(allCourses[index]);
-		},
-		[allCourses, handleModalToggle]
-	);
-
-	const handleDeleteBtnClick = useCallback(
-		(id) => {
-			if (OpenCourse?.courseId) {
-				setIsConfirmationDialogOpen(false);
-				deleteData(
-					OpenCourse?.courseId,
-					OpenCourse?.courseType,
-					setIsNotesModalOpen,
-					handleMsgShown,
-					handleMsgShown
-				);
-			} else {
-				handleMsgShown('Something went wrong.', 'error');
-			}
-		},
-		[OpenCourse, handleMsgShown]
-	);
-
-	const handleCourseInputChange = useCallback(
-		(e) => {
-			const { name, value } = e.target;
-			setOpenCourse({ ...OpenCourse, [name]: value });
-		},
-		[OpenCourse]
-	);
-
-	const handleCourseDetailsUpdate = useCallback(() => {
-		updateCourseDetails(OpenCourse, imageFileRef, setIsSaveLoading, handleMsgShown);
-	}, [OpenCourse, handleMsgShown, imageFileRef]);
-
 	return (
-		<div>
-			<NavBar handleModalToggle={handleModalToggle} />
+		<>
+			<NavBar />
 			<div className="homePageBackground"></div>
-			<div className="homePageContainer" component="main">
+
+			<div className="homePageContain" component="main">
 				<Toolbar />
-				<Loader isLoading={isGetLoading} />
-				{allCourses.map((item, index) => {
-					return (
-						<div className="courseBox" key={index}>
-							<img
-								className="courseImg"
-								src={item?.courseThumbnail || photoNotAvailable}
-								loading="lazy"
-								alt=""
-							/>
-							<div className="courseDetails">
-								<div className="title">{item?.courseName}</div>
-								<div className="aboutCourse">{item?.aboutCourse}</div>
-								<div className="coursePrice">₹{item?.courseDiscountedPrice}</div>
-								<div className="demoVideoLink">{item?.demoVideo}</div>
-								<div className="courseLink">{item?.courseLink}</div>
-								<MuiBtn
-									onBtnClick={(e) => {
-										handleEditBtn(index);
-									}}
-									BtnText="Edit"
-								/>
-							</div>
+				<div className="homePageTitle">
+					<div className="programName">
+						Program code and Name:- <span>P129 :: BCA</span>{' '}
+					</div>
+					<div className="classSection">
+						Section:- <span>D2308</span>
+					</div>
+				</div>
+
+				<div className="subjectTable">
+					<div className="tableRow  titleRow">
+						<div className="column_1">Subject</div>
+						<div className="column_2">PPT</div>
+						<div className="column_3">Syllabus </div>
+						<div className="column_4">Books</div>
+					</div>
+					<Loader isLoading={isGetLoading} />
+					{tableAllData.map((item, index) => (
+						<div className="tableRow" key={index}>
+							<div className="column_1">{item?.subject}</div>
+							<div className="column_2">{item?.ppt}</div>
+							<div className="column_3">{item?.syllabus} </div>
+							<div className="column_4">{item?.books}</div>
 						</div>
-					);
-				})}
+					))}
+				</div>
 			</div>
-			<FootBar />
 
-			{isNotesModalOpen.state && (
-				<ModalWrapper
-					open={isNotesModalOpen?.state}
-					modalType={isNotesModalOpen?.type}
-					handleModalClose={handleModalToggle}
-					OpenCourse={OpenCourse}
-					handleCourseInputChange={handleCourseInputChange}
-					setOpenCourse={setOpenCourse}
-					handleCourseDetailsUpdate={handleCourseDetailsUpdate}
-					imageFileRef={imageFileRef}
-					setImageFileRef={setImageFileRef}
-					isSaveLoading={isSaveLoading}
-					handleDeleteBtnClick={handleDeleteBtnClick}
-					toggleConfirmationDialogClosing={() => setIsConfirmationDialogOpen(!isConfirmationDialogOpen)}
-					handleAddNewCourseBtnClick={handleAddNewCourseBtnClick}
-					isAddBtnLoading={isAddBtnLoading}
-				/>
-			)}
-
-			{isConfirmationDialogOpen && (
-				<ConfirmationDialog
-					title="Are You Sure?"
-					message="Do you want to delete this course?"
-					isOpen={isConfirmationDialogOpen}
-					onCancel={() => setIsConfirmationDialogOpen(false)}
-					onYesClick={handleDeleteBtnClick}
-				/>
-			)}
-
+			{/* <FootBar /> */}
 			{msg && <ShowMsg isError={msg?.text ? true : false} msgText={msg?.text} type={msg?.type} />}
-		</div>
+		</>
 	);
 }
 

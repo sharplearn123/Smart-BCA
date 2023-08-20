@@ -20,38 +20,36 @@ import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from 'firebas
 
 const database = getFirestore();
 // collection ref
-const colRef = collection(database, 'All_Courses');
+const colRef = collection(database, 'subject_table');
 
 const photoNotAvailable =
 	'https://firebasestorage.googleapis.com/v0/b/sharplearn-2fe87.appspot.com/o/photoNotAvailable.jpeg?alt=media&token=18505eb6-80ee-4e9a-b81b-8a1a84c6e23d';
 
 // const userId = JSON.parse(localStorage.getItem('user_details'))?.userId || '';
 
-function getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown) {
-	const getDataQuery = query(colRef, orderBy('updatedOn', 'desc')); // orderBy('name', 'desc || ase')
+function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
+	const getDataQuery = query(colRef, orderBy('subject', 'desc')); // orderBy('name', 'desc || ase')
 	setIsGetLoading(true);
 	onSnapshot(
 		colRef,
 		async (realSnapshot) => {
 			await getDocs(getDataQuery)
 				.then((snapshot) => {
-					let allCourses = [];
+					let tableData = [];
 					snapshot.docs.forEach((doc) => {
-						allCourses.push({
+						tableData.push({
 							courseId: doc.id,
-							courseThumbnail: doc.data()?.courseThumbnail,
-							courseName: doc.data()?.courseName,
-							aboutCourse: doc.data()?.aboutCourse,
-							courseORGPrice: doc.data()?.courseORGPrice,
-							courseDiscountedPrice: doc.data()?.courseDiscountedPrice,
-							courseType: doc.data()?.courseType,
-							demoVideo: doc.data()?.demoVideo,
-							courseLink: doc.data()?.courseLink,
+							subject: doc.data()?.subject,
+							ppt: doc.data()?.ppt,
+							syllabus: doc.data()?.syllabus,
+							books: doc.data()?.books,
+
 							updatedOn: doc.data()?.updatedOn,
 						});
 					});
 					setIsGetLoading(false);
-					setAllCourses(allCourses);
+					setAllCourses(tableData);
+					console.log(tableData);
 				})
 				.catch((err) => {
 					setIsGetLoading(false);
@@ -262,4 +260,4 @@ function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handl
 	}
 }
 
-export { getUserAllNoteData, addNewCourse, updateCourseDetails, deleteData };
+export { getAllTableData, addNewCourse, updateCourseDetails, deleteData };
