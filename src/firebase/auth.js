@@ -76,6 +76,7 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 	if (docSnap.exists()) {
 		setMsg('This Registration No. already exists');
 		console.log('This Registration No. already exists');
+		setIsApiLoading(false);
 	} else {
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((cred) => {
@@ -95,6 +96,7 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 
 				setDoc(doc(database, 'user_info', registration_no), { userName, registration_no, email, password })
 					.then(() => {
+						setIsApiLoading(false);
 						localStorage.setItem(
 							'user_details',
 							JSON.stringify({ userName, email, registration_no, userId: cred?.user?.uid, })
