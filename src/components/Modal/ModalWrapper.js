@@ -43,6 +43,7 @@ function ModalWrapper({
 					<TextField
 						label="PPT"
 						name="ppt"
+						placeholder="PTT Full Link (with https://...)"
 						className="muiInputBox"
 						required
 						autoComplete="off"
@@ -52,6 +53,7 @@ function ModalWrapper({
 					<TextField
 						label="Books"
 						name="books"
+						placeholder="Books Full Link (with https://...)"
 						className="muiInputBox"
 						required
 						autoComplete="off"
@@ -61,6 +63,7 @@ function ModalWrapper({
 					<TextField
 						label="Syllabus"
 						name="syllabus"
+						placeholder="Syllabus Full Link (with https://...)"
 						className="muiInputBox"
 						required
 						autoComplete="off"

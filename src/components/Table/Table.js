@@ -79,13 +79,9 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 				<div className="tableRow  titleRow">
 					{tableTitle?.map((item, index) => (
 						<div
-							className="column"
+							className={tableTitle.length - 1 === index && supurUser ? 'column titleAddBtn' : 'column'}
 							key={index}
-							style={
-								tableTitle.length - 1 === index && supurUser
-									? { cursor: 'pointer', background: '', width: `${100 / tableTitle.length}%` }
-									: { width: `${100 / tableTitle.length}%` }
-							}
+							style={{ width: `${100 / tableTitle.length}%` }}
 							onClick={
 								tableTitle.length - 1 === index && supurUser ? () => handleModalToggle('add') : null
 							}
@@ -105,15 +101,34 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 						<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
 							{item?.subject}
 						</div>
-						<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
+						<a
+							href={item?.ppt}
+							target="_blank"
+							rel="noreferrer"
+							className="column"
+							style={{ width: `${100 / tableTitle.length}%` }}
+						>
 							{item?.ppt}
-						</div>
-						<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
+						</a>
+						<a
+							href={item?.books}
+							target="_blank"
+							rel="noreferrer"
+							className="column"
+							style={{ width: `${100 / tableTitle.length}%` }}
+						>
 							{item?.books}
-						</div>
-						<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
-							{item?.syllabus}{' '}
-						</div>
+						</a>
+						<a
+							href={item?.syllabus}
+							target="_blank"
+							rel="noreferrer"
+							className="column"
+							style={{ width: `${100 / tableTitle.length}%` }}
+						>
+							{item?.syllabus}
+						</a>
+
 						{supurUser && (
 							<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
 								<IconButton
