@@ -51,6 +51,10 @@
 
 /* ------------M-web----------- */
 @media screen and (max-width: 600px) {
+	.subjectTable {
+		width: 100%;
+	}
+
 	.titleRow {
 		font-weight: bold;
 		font-size: 20px;

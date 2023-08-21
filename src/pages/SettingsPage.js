@@ -27,7 +27,7 @@ const drawerWidth = 240;
 
 function SettingsPage() {
 	const [isPageLoaded, setIsPageLoaded] = useState(false);
-	const [mobileOpen, setMobileOpen] = useState(false);
+	const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 	const [settingsDrawerMenu, setSettingsDrawerMenu] = useState([
 		{
 			name: 'Profile',
@@ -64,8 +64,8 @@ function SettingsPage() {
 	}, []);
 
 	const handleDrawerToggle = useCallback(() => {
-		setMobileOpen(!mobileOpen);
-	}, [mobileOpen]);
+		setIsMobileDrawerOpen((prev) => !prev);
+	}, []);
 
 	const handleSelectedMenu = useCallback(
 		(menuName, index) => {
@@ -79,9 +79,9 @@ function SettingsPage() {
 			const newSettingsDrawerMenu = settingsDrawerMenu.map(function (items, i) {
 				return i === index
 					? {
-							...items,
-							isSelected: settingsDrawerMenu.i === menuName ? false : true,
-					  }
+						...items,
+						isSelected: settingsDrawerMenu.i === menuName ? false : true,
+					}
 					: { ...items, isSelected: false };
 			});
 
@@ -134,7 +134,7 @@ function SettingsPage() {
 					<SettingsDrawer
 						drawerWidth={drawerWidth}
 						handleDrawerToggle={handleDrawerToggle}
-						mobileOpen={mobileOpen}
+						isMobileDrawerOpen={isMobileDrawerOpen}
 						settingsDrawerMenu={settingsDrawerMenu}
 						handleSelectedMenu={handleSelectedMenu}
 					/>

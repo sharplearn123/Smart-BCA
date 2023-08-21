@@ -26,7 +26,6 @@ function NavBar() {
 	const profilePictureUrl = localStorage.getItem('user_profile_img') || defultProfilePicture;
 
 	const listenScrollEvent = (event) => {
-		console.log(window.scrollY);
 		if (window.scrollY < 15) {
 			return setIsbarScrolled(false);
 		} else if (window.scrollY > 15) {

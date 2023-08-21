@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 function SettingsDrawer(
-	{ drawerWidth, mobileOpen, handleDrawerToggle, settingsDrawerMenu, handleSelectedMenu },
+	{ drawerWidth, isMobileDrawerOpen, handleDrawerToggle, settingsDrawerMenu, handleSelectedMenu },
 	props
 ) {
 	const { window } = props;
@@ -35,7 +35,7 @@ function SettingsDrawer(
 					<MenuIcon />
 				</IconButton>
 				<Typography variant="h6" noWrap component="div">
-					Bhemu Notes
+					SmartBCA
 				</Typography>
 			</Toolbar>
 			<Divider />
@@ -45,7 +45,8 @@ function SettingsDrawer(
 						key={index}
 						disablePadding
 						selected={item.isSelected}
-						onClick={() => handleSelectedMenu(item?.name, index)}
+						// eslint-disable-next-line no-sequences
+						onClick={() => (handleSelectedMenu(item?.name, index), handleDrawerToggle())}
 					>
 						<ListItemButton sx={{ py: 1.7, pl: 4 }}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
@@ -54,7 +55,7 @@ function SettingsDrawer(
 					</ListItem>
 				))}
 			</List>
-		</div>
+		</div >
 	);
 
 	return (
@@ -63,7 +64,7 @@ function SettingsDrawer(
 			<Drawer
 				container={container}
 				variant="temporary"
-				open={mobileOpen}
+				open={isMobileDrawerOpen}
 				onClose={handleDrawerToggle}
 				ModalProps={{
 					keepMounted: true, // Better open performance on mobile.
