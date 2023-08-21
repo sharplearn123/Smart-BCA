@@ -61,13 +61,13 @@ function ModalWrapper({
 						onChange={handleModalInputChange}
 					/>
 					<TextField
-						label="Books"
-						name="books"
-						placeholder="Books Full Link (with https://...)"
+						label="Notes"
+						name="notes"
+						placeholder="Notes Full Link (with https://...)"
 						className="muiInputBox"
 						required
 						autoComplete="off"
-						value={openModalData?.books || ''}
+						value={openModalData?.notes || ''}
 						onChange={handleModalInputChange}
 					/>
 					<br />

@@ -1,7 +1,7 @@
 .subjectTable {
 	min-height: 500px;
 	margin: auto;
-	margin-top: 40px;
+	margin-top: 20px;
 	width: 85%;
 	backdrop-filter: saturate(180%) blur(5px);
 	background-color: rgba(255, 255, 255, 0.309);

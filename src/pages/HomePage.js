@@ -7,6 +7,7 @@ import NavBar from '../components/Bar/NavBar/NavBar';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import Table from '../components/Table/Table.js';
 import Toolbar from '@mui/material/Toolbar';
+import SearchIcon from '@mui/icons-material/Search';
 
 import '../styles/homePage.css';
 
@@ -19,6 +20,7 @@ function HomePage() {
 	const [msg, setMsg] = useState({ text: '', type: '' });
 	const [isGetLoading, setIsGetLoading] = useState(false);
 	const [tableAllData, setTableAllData] = useState([]);
+	const [searchBoxText, setSearchBoxText] = useState('');
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -37,6 +39,10 @@ function HomePage() {
 		getAllTableData(setTableAllData, setIsGetLoading, handleMsgShown);
 	}, [handleMsgShown]);
 
+	const handleSearch = useCallback(() => {
+		window.open(searchBoxText, '_self', false);
+	}, [searchBoxText]);
+
 	return (
 		<>
 			<NavBar />
@@ -45,7 +51,7 @@ function HomePage() {
 			<div className="homePageContain" component="main">
 				<Toolbar />
 				<div className="homePageTitle">
-					<div>
+					<div className="classInfo">
 						<div className="programName">
 							Program code: <span>P124</span>
 						</div>
@@ -56,18 +62,31 @@ function HomePage() {
 							Section:- <span>D2308</span>
 						</div>
 					</div>
-					{/* <div className="classSection">
-						Section:- <span>D2308</span>
-					</div> */}
+					<div className="searchBox">
+						<input
+							value={searchBoxText}
+							onChange={(e) => setSearchBoxText(e.target.value)}
+							onKeyDown={(e) => {
+								if (e.keyCode === 13 || e.which === 13) {
+									handleSearch();
+								}
+							}}
+							type="text"
+							placeholder="Search Registration No."
+						/>
+						<SearchIcon sx={{ py: 0.5, pr: 1, cursor: 'pointer' }} onClick={handleSearch} />
+					</div>
 				</div>
+
+				<div className="tableSemesterTitle">Semester 1 | unit 1</div>
 				<Table
 					tableAllData={tableAllData}
 					isGetLoading={isGetLoading}
 					supurUser={supurUser ? true : false}
 					tableTitle={
 						supurUser
-							? ['Subject', 'Syllabus', 'PPT', 'Books', 'Edit/Add']
-							: ['Subject', 'Syllabus', 'PPT', 'Books']
+							? ['Subject', 'Syllabus', 'PPT', 'Notes', 'Edit/Add']
+							: ['Subject', 'Syllabus', 'PPT', 'Notes']
 					}
 				/>
 			</div>

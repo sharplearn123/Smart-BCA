@@ -34,7 +34,7 @@ function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
 							subject: doc.data()?.subject,
 							ppt: doc.data()?.ppt,
 							syllabus: doc.data()?.syllabus,
-							books: doc.data()?.books,
+							notes: doc.data()?.notes,
 
 							updatedOn: doc.data()?.updatedOn,
 						});
@@ -58,9 +58,9 @@ function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
 
 // //Add row to Database
 function addNewTableRow(incomingData, handleModalToggle, setIsAddBtnLoading, handleMsgShown) {
-	const { subject, ppt, books, syllabus } = incomingData;
+	const { subject, ppt, notes, syllabus } = incomingData;
 
-	if (!subject?.trim() || !ppt?.trim() || !books?.trim() || !syllabus?.trim()) {
+	if (!subject?.trim() || !ppt?.trim() || !notes?.trim() || !syllabus?.trim()) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
@@ -103,9 +103,9 @@ function deleteTableRow(rowId, handleModalToggle, handleMsgShown) {
 
 //update Table Details
 function updateTableDetails(incomingData, setIsSaveLoading, handleMsgShown) {
-	const { rowId, subject, ppt, books, syllabus } = incomingData;
+	const { rowId, subject, ppt, notes, syllabus } = incomingData;
 
-	if (!rowId || !subject || !ppt || !books || !syllabus) {
+	if (!rowId || !subject || !ppt || !notes || !syllabus) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;

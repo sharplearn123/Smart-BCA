@@ -12,7 +12,12 @@
 
 .homePageTitle {
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
+	/* justify-content: space-around; */
+}
+
+.classInfo {
+	width: 35%;
 }
 
 .programName {
@@ -23,6 +28,45 @@
 .programName span {
 	color: #fc7a00;
 	font-weight: bold;
+}
+
+.searchBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	margin-right: 20px;
+	background-color: #e8c39e;
+	border-radius: 5px;
+	border: 1px solid #83b5d8;
+}
+
+.searchBox input {
+	width: 100%;
+	height: 40px;
+	font-size: 18px;
+	border-radius: 5px;
+	outline: unset;
+	padding: 0 10px;
+	border: unset;
+	background-color: unset;
+}
+
+.searchBox:hover {
+	border: 1px solid #fc7a00;
+}
+
+.searchBox:focus {
+	border: rgb(255, 166, 0) 2px solid;
+}
+
+.tableSemesterTitle {
+	font-size: 40px;
+	margin-top: 20px;
+	text-align: center;
+	background: -webkit-linear-gradient(#eee, #83b5d8);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 /* .classSection {
@@ -36,7 +80,27 @@
 
 /* ------------M-web----------- */
 @media screen and (max-width: 700px) {
+	.homePageTitle {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.classInfo {
+		width: 100%;
+	}
+
+	.searchBox {
+		width: 100%;
+		margin: 10px 0;
+		height: 30px;
+	}
+
 	.programName {
 		font-size: 15px;
+	}
+
+	.tableSemesterTitle {
+		font-size: 30px;
 	}
 }

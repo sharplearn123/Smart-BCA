@@ -124,13 +124,13 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 							{item?.ppt}
 						</a>
 						<a
-							href={item?.books}
+							href={item?.notes}
 							target="_blank"
 							rel="noreferrer"
 							className="column"
 							style={{ width: `${100 / tableTitle.length}%` }}
 						>
-							{item?.books}
+							{item?.notes}
 						</a>
 
 						{supurUser && (
