@@ -99,7 +99,7 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 						setIsApiLoading(false);
 						localStorage.setItem(
 							'user_details',
-							JSON.stringify({ userName, email, registration_no, userId: cred?.user?.uid, })
+							JSON.stringify({ userName, email, registration_no, userId: cred?.user?.uid })
 						);
 						document.location.href = '/home';
 					})

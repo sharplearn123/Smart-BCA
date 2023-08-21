@@ -97,10 +97,13 @@ function handlePasswordChange(changePasswordData, setChangePasswordMsg, setIsCha
 	console.log(changePasswordData);
 
 	if (!currentPassword || !newPassword || !confPassword)
+		// eslint-disable-next-line no-sequences
 		return setChangePasswordMsg('Please provide all detials'), setIsChangePasswordBtnLoading(false);
 	if (newPassword !== confPassword)
+		// eslint-disable-next-line no-sequences
 		return setChangePasswordMsg('Password does not match.'), setIsChangePasswordBtnLoading(false);
 	if (currentPassword.length < 8 || newPassword.length < 8 || confPassword.length < 8)
+		// eslint-disable-next-line no-sequences
 		return setChangePasswordMsg('Password must be 8 digits.'), setIsChangePasswordBtnLoading(false);
 
 	const user = auth.currentUser;

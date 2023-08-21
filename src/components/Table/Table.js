@@ -79,7 +79,11 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 				<div className="tableRow  titleRow">
 					{tableTitle?.map((item, index) => (
 						<div
-							className={tableTitle.length - 1 === index && supurUser ? 'column titleAddBtn' : 'column'}
+							className={
+								tableTitle.length - 1 === index && supurUser
+									? 'column titleAddBtn tableTitle'
+									: 'column tableTitle'
+							}
 							key={index}
 							style={{ width: `${100 / tableTitle.length}%` }}
 							onClick={

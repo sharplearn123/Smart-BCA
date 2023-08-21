@@ -55,7 +55,7 @@ function SettingsDrawer(
 					</ListItem>
 				))}
 			</List>
-		</div >
+		</div>
 	);
 
 	return (

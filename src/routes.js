@@ -8,6 +8,7 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const CreateAcc = lazy(() => import('./pages/CreateAccPage'));
 const ForgetPasswordPage = lazy(() => import('./pages/ForgetPasswordPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const UserProfilePage = lazy(() => import('./pages/UserProfilePage'));
 
 function Routes() {
 	return (
@@ -28,14 +29,7 @@ function Routes() {
 				<Route exact path="/forget-password" element={<ForgetPasswordPage />} />
 				<Route exact path="/settings" element={<SettingsPage />} />
 
-				<Route
-					path="*"
-					element={
-						<center>
-							<h1>Page not Found</h1>
-						</center>
-					}
-				/>
+				<Route path="*" element={<UserProfilePage />} />
 			</Switch>
 		</Suspense>
 	);

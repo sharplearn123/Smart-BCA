@@ -11,6 +11,13 @@
 	overflow: scroll;
 }
 
+.titleRow {
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 10px 10px 0 0;
+	backdrop-filter: saturate(180%) blur(5px);
+}
+
 .tableRow {
 	display: flex;
 	width: 100%;
@@ -31,22 +38,12 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-.column {
 	border-right: 1px solid #000000;
 }
 
 .column:last-child {
 	border-right: none;
-}
-
-.titleRow {
-	/* background-color: red; */
-	font-weight: bold;
-	font-size: 20px;
-	border-radius: 10px 10px 0 0;
-	backdrop-filter: saturate(180%) blur(5px);
+	overflow: unset;
 }
 
 /* ------------M-web----------- */
@@ -55,11 +52,11 @@
 		width: 100%;
 	}
 
+	.tableTitle {
+		background-color: rgba(255, 255, 255, 0.309);
+	}
+
 	.titleRow {
-		font-weight: bold;
-		font-size: 20px;
-		border-radius: 10px 10px 0 0;
 		backdrop-filter: unset;
-		background-color: rgba(194, 164, 134, 0.7);
 	}
 }
