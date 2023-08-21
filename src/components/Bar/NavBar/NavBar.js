@@ -76,7 +76,7 @@ function NavBar() {
 								className="defultProfilePicture"
 								size="small"
 								sx={{ borderRadius: '5px' }}
-								src={profilePictureUrl}
+								src={profilePictureUrl === 'null' ? defultProfilePicture : profilePictureUrl}
 								alt="logo"
 							/>
 						</IconButton>

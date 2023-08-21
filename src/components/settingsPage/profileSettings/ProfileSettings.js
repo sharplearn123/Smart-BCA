@@ -44,7 +44,13 @@ function ProfileSettings() {
 			<div className="userInfo">
 				<div>
 					<img
-						src={imageUpload ? URL.createObjectURL(imageUpload) : profilePictureUrl || defultProfilePicture}
+						src={
+							imageUpload
+								? URL.createObjectURL(imageUpload)
+								: profilePictureUrl === 'null'
+								? defultProfilePicture
+								: profilePictureUrl
+						}
 						alt=""
 						className="ProfilePictureImg"
 					/>

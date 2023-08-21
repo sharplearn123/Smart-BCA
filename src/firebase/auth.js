@@ -77,42 +77,40 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 		setMsg('This Registration No. already exists');
 		console.log('This Registration No. already exists');
 	} else {
-		await setDoc(doc(database, 'user_info', registration_no), { userName, registration_no, email, password })
-			.then(() => {
-				createUserWithEmailAndPassword(auth, email, password)
-					.then((cred) => {
-						sendEmailVerification(cred.user).then(() => {
-							setMsg('Email verification sent. Please also check in spam');
-							console.log('Email verification sent. Please also check in spam');
-						});
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((cred) => {
+				sendEmailVerification(cred.user).then(() => {
+					setMsg('Email verification sent. Please also check in spam');
+					console.log('Email verification sent. Please also check in spam');
+				});
 
-						updateProfile(cred.user, { displayName: userName })
-							.then(() => {
-								setIsApiLoading(false);
-								localStorage.setItem(
-									'user_details',
-									JSON.stringify({
-										userName,
-										email,
-										registration_no,
-										userId: cred?.user?.uid,
-									})
-								);
-								document.location.href = '/home';
-							})
-							.catch((err) => {
-								setIsApiLoading(false);
-								setMsg(err.code);
-							});
+				updateProfile(cred.user, { displayName: userName })
+					.then(() => {
+						setIsApiLoading(false);
 					})
 					.catch((err) => {
-						console.log(err.code);
-						setMsg(err.code);
 						setIsApiLoading(false);
+						setMsg(err.code);
+					});
+
+				setDoc(doc(database, 'user_info', registration_no), { userName, registration_no, email, password })
+					.then(() => {
+						localStorage.setItem(
+							'user_details',
+							JSON.stringify({ userName, email, registration_no, userId: cred?.user?.uid, })
+						);
+						document.location.href = '/home';
+					})
+					.catch((err) => {
+						setIsApiLoading(false);
+
+						setMsg(err.code);
 					});
 			})
 			.catch((err) => {
+				console.log(err.code);
 				setMsg(err.code);
+				setIsApiLoading(false);
 			});
 	}
 }
