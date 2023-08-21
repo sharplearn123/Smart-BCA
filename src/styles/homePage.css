@@ -15,10 +15,9 @@
 	justify-content: space-between;
 }
 
-.programName,
-.classSection {
+.programName {
 	font-size: 25px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .programName span {
@@ -26,14 +25,18 @@
 	font-weight: bold;
 }
 
-.classSection {
+/* .classSection {
 	text-align: end;
 }
 
 .classSection span {
 	color: #fc7a00;
 	font-weight: bold;
-}
+} */
 
 /* ------------M-web----------- */
-/* @media screen and (max-width: 600px) {} */
+@media screen and (max-width: 700px) {
+	.programName {
+		font-size: 15px;
+	}
+}

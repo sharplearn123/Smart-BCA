@@ -106,6 +106,15 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 							{item?.subject}
 						</div>
 						<a
+							href={item?.syllabus}
+							target="_blank"
+							rel="noreferrer"
+							className="column"
+							style={{ width: `${100 / tableTitle.length}%` }}
+						>
+							{item?.syllabus}
+						</a>
+						<a
 							href={item?.ppt}
 							target="_blank"
 							rel="noreferrer"
@@ -122,15 +131,6 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 							style={{ width: `${100 / tableTitle.length}%` }}
 						>
 							{item?.books}
-						</a>
-						<a
-							href={item?.syllabus}
-							target="_blank"
-							rel="noreferrer"
-							className="column"
-							style={{ width: `${100 / tableTitle.length}%` }}
-						>
-							{item?.syllabus}
 						</a>
 
 						{supurUser && (

@@ -45,12 +45,20 @@ function HomePage() {
 			<div className="homePageContain" component="main">
 				<Toolbar />
 				<div className="homePageTitle">
-					<div className="programName">
-						Program code and Name:- <span>P124 :: BCA</span>{' '}
+					<div>
+						<div className="programName">
+							Program code: <span>P124</span>
+						</div>
+						<div className="programName">
+							Program Name: <span>BCA</span>
+						</div>
+						<div className="programName">
+							Section:- <span>D2308</span>
+						</div>
 					</div>
-					<div className="classSection">
+					{/* <div className="classSection">
 						Section:- <span>D2308</span>
-					</div>
+					</div> */}
 				</div>
 				<Table
 					tableAllData={tableAllData}
@@ -58,8 +66,8 @@ function HomePage() {
 					supurUser={supurUser ? true : false}
 					tableTitle={
 						supurUser
-							? ['Subject', 'PPT', 'Books', 'Syllabus', 'Edit/Add']
-							: ['Subject', 'PPT', 'Books', 'Syllabus']
+							? ['Subject', 'Syllabus', 'PPT', 'Books', 'Edit/Add']
+							: ['Subject', 'Syllabus', 'PPT', 'Books']
 					}
 				/>
 			</div>

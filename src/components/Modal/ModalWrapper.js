@@ -41,6 +41,16 @@ function ModalWrapper({
 						onChange={handleModalInputChange}
 					/>
 					<TextField
+						label="Syllabus"
+						name="syllabus"
+						placeholder="Syllabus Full Link (with https://...)"
+						className="muiInputBox"
+						required
+						autoComplete="off"
+						value={openModalData?.syllabus || ''}
+						onChange={handleModalInputChange}
+					/>
+					<TextField
 						label="PPT"
 						name="ppt"
 						placeholder="PTT Full Link (with https://...)"
@@ -58,16 +68,6 @@ function ModalWrapper({
 						required
 						autoComplete="off"
 						value={openModalData?.books || ''}
-						onChange={handleModalInputChange}
-					/>
-					<TextField
-						label="Syllabus"
-						name="syllabus"
-						placeholder="Syllabus Full Link (with https://...)"
-						className="muiInputBox"
-						required
-						autoComplete="off"
-						value={openModalData?.syllabus || ''}
 						onChange={handleModalInputChange}
 					/>
 					<br />
