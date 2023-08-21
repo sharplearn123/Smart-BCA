@@ -20,8 +20,6 @@ import defultProfilePicture from '../../../images/defultProfilePicture.jpeg';
 
 import './navBar.css';
 
-const drawerWidth = 240;
-
 function NavBar({ handleModalToggle }, props) {
 	const [settingMenuAnchorEl, setSettingMenuAddNotesAnchorEl] = useState(null);
 

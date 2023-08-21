@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { handleUserState } from '../firebase/auth';
-import { getAllTableData, addNewCourse, updateCourseDetails, deleteData } from '../firebase//home.js';
+import { getAllTableData } from '../firebase//home.js';
 
 import NavBar from '../components/Bar/NavBar/NavBar';
-import FootBar from '../components/Bar/Footer/Footer';
-import Loader from '../components/Loader/Loader';
+// import FootBar from '../components/Bar/Footer/Footer';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import Table from '../components/Table/Table.js';
-
-import ConfirmationDialog from '../components/ConfirmationDialog/ConfirmationDialog.js';
 import Toolbar from '@mui/material/Toolbar';
 
 import '../styles/homePage.css';
@@ -22,7 +19,6 @@ function HomePage() {
 	const [msg, setMsg] = useState({ text: '', type: '' });
 	const [isGetLoading, setIsGetLoading] = useState(false);
 	const [tableAllData, setTableAllData] = useState([]);
-	const [openModal, setOpenModal] = useState(false);
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -50,7 +46,7 @@ function HomePage() {
 				<Toolbar />
 				<div className="homePageTitle">
 					<div className="programName">
-						Program code and Name:- <span>P129 :: BCA</span>{' '}
+						Program code and Name:- <span>P124 :: BCA</span>{' '}
 					</div>
 					<div className="classSection">
 						Section:- <span>D2308</span>
@@ -60,7 +56,6 @@ function HomePage() {
 					tableAllData={tableAllData}
 					isGetLoading={isGetLoading}
 					supurUser={supurUser ? true : false}
-					openModal={openModal}
 					tableTitle={
 						supurUser
 							? ['Subject', 'PPT', 'Books', 'Syllabus', 'Edit/Add']

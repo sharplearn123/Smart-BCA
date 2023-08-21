@@ -3,9 +3,9 @@ import React, { useState, useCallback } from 'react';
 import Loader from '../Loader/Loader';
 import ModalWrapper from '../Modal/ModalWrapper';
 import ShowMsg from '../ShowMsg/ShowMsg.js';
+import ConfirmationDialog from '../ConfirmationDialog/ConfirmationDialog.js';
 
-import { getUserAllNoteData, addNewTableRow, updateTableDetails, deleteData } from '../../firebase//home.js';
-
+import { addNewTableRow, updateTableDetails, deleteTableRow } from '../../firebase//home.js';
 
 import IconButton from '@mui/material/IconButton';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -18,6 +18,8 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 	const [isModalOpen, setIsModalOpen] = useState({ isOpen: false, modalType: '' });
 	const [openModalData, setOpenModalData] = useState({});
 	const [isSaveBtnLoading, setIsSaveBtnLoading] = useState(false);
+	const [isAddBtnLoading, setIsAddBtnLoading] = useState(false);
+	const [isDeleteConfirmationDialogOpen, setIsDeleteConfirmationDialogOpen] = useState(false);
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -45,7 +47,6 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 		[handleModalToggle, tableAllData]
 	);
 
-
 	const handleModalInputChange = useCallback(
 		(e) => {
 			const { name, value } = e.target;
@@ -60,7 +61,16 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 	}, [openModalData, handleMsgShown]);
 
 	const handleAddRowBtnClick = useCallback(() => {
-		addNewTableRow(openModalData, handleModalToggle, setIsSaveBtnLoading, handleMsgShown);
+		addNewTableRow(openModalData, handleModalToggle, setIsAddBtnLoading, handleMsgShown);
+	}, [handleModalToggle, handleMsgShown, openModalData]);
+
+	const handleDeleteBtnClick = useCallback(() => {
+		if (openModalData?.rowId) {
+			setIsDeleteConfirmationDialogOpen(false);
+			deleteTableRow(openModalData?.rowId, handleModalToggle, handleMsgShown);
+		} else {
+			handleMsgShown('Missing  RowId.', 'error');
+		}
 	}, [handleModalToggle, handleMsgShown, openModalData]);
 
 	return (
@@ -127,10 +137,22 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 				handleModalInputChange={handleModalInputChange}
 				handleTableDetailsUpdate={handleTableDetailsUpdate}
 				isSaveBtnLoading={isSaveBtnLoading}
+				isAddBtnLoading={isAddBtnLoading}
 				handleAddRowBtnClick={handleAddRowBtnClick}
+				toggleDeleteConfirmationDialog={() => setIsDeleteConfirmationDialogOpen((state) => !state)}
 			/>
-			{msg && <ShowMsg isError={msg?.text ? true : false} msgText={msg?.text} type={msg?.type} />}
 
+			{isDeleteConfirmationDialogOpen && (
+				<ConfirmationDialog
+					title="Are You Sure?"
+					message="Do you want to delete this Subject?"
+					isOpen={isDeleteConfirmationDialogOpen}
+					onCancel={() => setIsDeleteConfirmationDialogOpen(false)}
+					onYesClick={handleDeleteBtnClick}
+				/>
+			)}
+
+			{msg && <ShowMsg isError={msg?.text ? true : false} msgText={msg?.text} type={msg?.type} />}
 		</>
 	);
 }

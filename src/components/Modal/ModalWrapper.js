@@ -5,8 +5,6 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import photoNotAvailable from '../../images/photoNotAvailable.jpeg';
-
 import './modalWrapper.css';
 
 function ModalWrapper({
@@ -18,9 +16,9 @@ function ModalWrapper({
 	handleModalInputChange,
 	handleTableDetailsUpdate,
 	isSaveBtnLoading,
-	toggleConfirmationDialogClosing,
-	handleAddRowBtnClick,
 	isAddBtnLoading,
+	toggleDeleteConfirmationDialog,
+	handleAddRowBtnClick,
 }) {
 	return (
 		<Modal open={open} onClose={() => handleModalToggle('')}>
@@ -77,8 +75,8 @@ function ModalWrapper({
 								color="error"
 								id="basic-button"
 								aria-haspopup="true"
-								// onClick={onBtnClick}
-								// disabled={isBtnLoading}
+								onClick={toggleDeleteConfirmationDialog}
+								disabled={isAddBtnLoading}
 								sx={{
 									fontWeight: 600,
 									p: 0,
@@ -108,13 +106,19 @@ function ModalWrapper({
 							variant="contained"
 							onClick={handleAddRowBtnClick}
 							color="success"
+							sx={{
+								fontWeight: 600,
+								p: 0,
+								height: 40,
+								width: 140,
+							}}
 						>
-							Add
+							{isAddBtnLoading ? <CircularProgress size={30} /> : 'Add'}
 						</Button>
 					)}
 				</div>
 			</div>
-		</Modal >
+		</Modal>
 	);
 }
 
