@@ -5,7 +5,7 @@ import { handleSignOut, handleUserState } from '../firebase/auth';
 import SettingsDrawer from '../components/settingsPage/settingsDrawer/SettingsDrawer';
 import ProfileSettings from '../components/settingsPage/profileSettings/ProfileSettings';
 import AccountSettings from '../components/settingsPage/accountSettings/AccountSettings';
-import AboutSettings from '../components/settingsPage/aboutSettings/AboutSettings';
+// import AboutSettings from '../components/settingsPage/aboutSettings/AboutSettings';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,7 +17,7 @@ import Divider from '@mui/material/Divider';
 
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
-import InfoIcon from '@mui/icons-material/Info';
+// import InfoIcon from '@mui/icons-material/Info';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -79,9 +79,9 @@ function SettingsPage() {
 			const newSettingsDrawerMenu = settingsDrawerMenu.map(function (items, i) {
 				return i === index
 					? {
-							...items,
-							isSelected: settingsDrawerMenu.i === menuName ? false : true,
-					  }
+						...items,
+						isSelected: settingsDrawerMenu.i === menuName ? false : true,
+					}
 					: { ...items, isSelected: false };
 			});
 
