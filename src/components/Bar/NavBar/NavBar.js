@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
@@ -20,8 +20,24 @@ import defultProfilePicture from '../../../images/defultProfilePicture.jpeg';
 
 import './navBar.css';
 
-function NavBar({ handleModalToggle }, props) {
+function NavBar() {
 	const [settingMenuAnchorEl, setSettingMenuAddNotesAnchorEl] = useState(null);
+	const [isbarScrolled, setIsbarScrolled] = useState(false);
+	const profilePictureUrl = localStorage.getItem('user_profile_img') || defultProfilePicture;
+
+	const listenScrollEvent = (event) => {
+		console.log(window.scrollY);
+		if (window.scrollY < 15) {
+			return setIsbarScrolled(false);
+		} else if (window.scrollY > 15) {
+			return setIsbarScrolled(true);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('scroll', listenScrollEvent);
+		return () => window.removeEventListener('scroll', listenScrollEvent);
+	}, []);
 
 	const isSettingsAnchorElopen = Boolean(settingMenuAnchorEl);
 
@@ -35,8 +51,10 @@ function NavBar({ handleModalToggle }, props) {
 	}, []);
 
 	return (
-		<Box sx={{ display: 'flex' }}>
-			<AppBar sx={{ bgcolor: 'unset', minHeight: 'unset' }}>
+		<Box sx={{ display: 'flex' }} className={isbarScrolled ? 'barColored' : 'barColored'}>
+			<AppBar
+				sx={isbarScrolled ? { bgcolor: null, minHeight: 'unset' } : { bgcolor: 'unset', minHeight: 'unset' }}
+			>
 				<Toolbar>
 					<div className="brandName">
 						<img src={logoSizeM} alt="" />
@@ -58,7 +76,7 @@ function NavBar({ handleModalToggle }, props) {
 								className="defultProfilePicture"
 								size="small"
 								sx={{ borderRadius: '5px' }}
-								src={defultProfilePicture}
+								src={profilePictureUrl}
 								alt="logo"
 							/>
 						</IconButton>
