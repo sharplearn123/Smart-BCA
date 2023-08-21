@@ -8,6 +8,8 @@ import MuiBtn from '../components/EnrollBtn/MuiBtn.js';
 import ModalWrapper from '../components/Modal/ModalWrapper.js';
 import Loader from '../components/Loader/Loader';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
+import Table from '../components/Table/Table.js';
+
 import ConfirmationDialog from '../components/ConfirmationDialog/ConfirmationDialog.js';
 import Toolbar from '@mui/material/Toolbar';
 
@@ -33,6 +35,7 @@ function HomePage() {
 
 	useEffect(() => {
 		handleUserState('homePage');
+		document.title = 'SmartBCA | Home ';
 		getAllTableData(setTableAllData, setIsGetLoading, handleMsgShown);
 	}, [handleMsgShown]);
 	return (
@@ -50,24 +53,7 @@ function HomePage() {
 						Section:- <span>D2308</span>
 					</div>
 				</div>
-
-				<div className="subjectTable">
-					<div className="tableRow  titleRow">
-						<div className="column_1">Subject</div>
-						<div className="column_2">PPT</div>
-						<div className="column_3">Syllabus </div>
-						<div className="column_4">Books</div>
-					</div>
-					<Loader isLoading={isGetLoading} />
-					{tableAllData.map((item, index) => (
-						<div className="tableRow" key={index}>
-							<div className="column_1">{item?.subject}</div>
-							<div className="column_2">{item?.ppt}</div>
-							<div className="column_3">{item?.syllabus} </div>
-							<div className="column_4">{item?.books}</div>
-						</div>
-					))}
-				</div>
+				<Table tableAllData={tableAllData} isGetLoading={isGetLoading} />
 			</div>
 
 			{/* <FootBar /> */}

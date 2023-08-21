@@ -9,13 +9,10 @@ import {
 	sendPasswordResetEmail,
 } from 'firebase/auth';
 
-import { getFirestore, collection, getDoc, setDoc, doc } from 'firebase/firestore';
-
-import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from 'firebase/storage';
+import { getFirestore, getDoc, setDoc, doc } from 'firebase/firestore';
 
 const database = getFirestore();
 // collection ref
-const colRef = collection(database, 'user_info');
 
 const auth = getAuth();
 

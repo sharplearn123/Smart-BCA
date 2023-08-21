@@ -17,9 +17,14 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: rgb(246, 132, 1);
-	/* background-color: #242526; */
+	/* background-color: rgb(246, 132, 1); */
+	background-color: #242526;
 	color: white;
+}
+
+a {
+	color: unset;
+	text-decoration: unset;
 }
 
 #pageNotFound {
