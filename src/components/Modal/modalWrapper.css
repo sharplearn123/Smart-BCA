@@ -6,9 +6,8 @@
 	background: rgba(54, 54, 54);
 	outline: unset;
 	width: 90%;
-	height: 90%;
 	border-radius: 8px;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .modalHeader {
@@ -22,76 +21,24 @@
 .modalCourseBox {
 	width: 100%;
 	overflow: auto;
-	height: calc(100% - 60px);
 	padding-bottom: 100px;
-}
-
-.courseImgAndName {
 	display: flex;
-	margin: 15px 0 0 15px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
-.modalCourseImg {
-	height: 300px;
-	width: 300px;
-	object-fit: cover;
-}
-
-.courseNameAndPrice {
-	width: 100%;
-	margin-left: 15px;
-}
-
-.courseType {
-	margin-bottom: 15px;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.courseTypeInput {
-	width: calc(90% - 20px);
-	/* font-size: 20px; */
-	/* font-weight: bold; */
-	/* padding: 5px 10px; */
-	margin-bottom: 10px;
-}
-
-.courseTitleInput,
-.coursePriceInput,
-.demoVideoLinkInput,
-.courseLinkInput {
-	width: calc(90% - 20px);
+.muiInputBox {
+	width: 90% !important;
 	margin-bottom: 10px !important;
 }
 
-.courseThumbnailInput {
-	font-size: unset;
-	margin: 10px 0;
+.muiInputBox:first-child {
+	margin-top: 20px !important;
 }
 
-.courseDetailsInputArea {
-	min-height: 150px;
-	margin: 15px;
-	font-family: unset;
-	font-size: 15px;
-	resize: vertical;
-}
-
-.aboutCourseInput {
-	width: calc(90% - 20px);
-	border-radius: 3.5px;
-	min-height: 150px;
-	margin-bottom: 10px;
-	background-color: unset;
-	color: white;
-	padding: 5px 10px;
-	font-family: unset;
-	font-size: 16px;
-	resize: vertical;
-}
-
-.aboutCourseInput:hover {
-	border-color: white;
+.editModalButtons {
+	display: flex;
 }
 
 @media screen and (max-width: 1000px) {

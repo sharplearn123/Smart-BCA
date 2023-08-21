@@ -4,8 +4,6 @@ import { getAllTableData, addNewCourse, updateCourseDetails, deleteData } from '
 
 import NavBar from '../components/Bar/NavBar/NavBar';
 import FootBar from '../components/Bar/Footer/Footer';
-import MuiBtn from '../components/EnrollBtn/MuiBtn.js';
-import ModalWrapper from '../components/Modal/ModalWrapper.js';
 import Loader from '../components/Loader/Loader';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import Table from '../components/Table/Table.js';
@@ -15,12 +13,16 @@ import Toolbar from '@mui/material/Toolbar';
 
 import '../styles/homePage.css';
 
-import photoNotAvailable from '../images/photoNotAvailable.jpeg';
+const array = JSON.parse(process.env.REACT_APP_SUPER_USER);
+let supurUser = array.find(function (element) {
+	return element === parseInt(JSON.parse(localStorage.getItem('user_details'))?.registration_no);
+});
 
 function HomePage() {
 	const [msg, setMsg] = useState({ text: '', type: '' });
 	const [isGetLoading, setIsGetLoading] = useState(false);
 	const [tableAllData, setTableAllData] = useState([]);
+	const [openModal, setOpenModal] = useState(false);
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -38,6 +40,7 @@ function HomePage() {
 		document.title = 'SmartBCA | Home ';
 		getAllTableData(setTableAllData, setIsGetLoading, handleMsgShown);
 	}, [handleMsgShown]);
+
 	return (
 		<>
 			<NavBar />
@@ -53,7 +56,17 @@ function HomePage() {
 						Section:- <span>D2308</span>
 					</div>
 				</div>
-				<Table tableAllData={tableAllData} isGetLoading={isGetLoading} />
+				<Table
+					tableAllData={tableAllData}
+					isGetLoading={isGetLoading}
+					supurUser={supurUser ? true : false}
+					openModal={openModal}
+					tableTitle={
+						supurUser
+							? ['Subject', 'PPT', 'Books', 'Syllabus', 'Edit/Add']
+							: ['Subject', 'PPT', 'Books', 'Syllabus']
+					}
+				/>
 			</div>
 
 			{/* <FootBar /> */}

@@ -18,23 +18,25 @@
 	padding: 5px 0;
 }
 
-.column_1,
-.column_2,
-.column_3,
-.column_4 {
-	width: 25%;
+.column {
 	min-width: 100px;
 	padding: 5px;
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.column_1,
-.column_2,
-.column_3 {
+.column {
 	border-right: 1px solid #000000;
 }
 
+.column:last-child {
+	border-right: none;
+}
+
 .titleRow {
+	/* background-color: red; */
 	font-weight: bold;
 	font-size: 20px;
 	border-radius: 10px 10px 0 0;

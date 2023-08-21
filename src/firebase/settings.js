@@ -2,7 +2,7 @@ import { storage } from './initFirebase';
 
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updateProfile, updatePassword } from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import { doc, updateDoc, getFirestore } from 'firebase/firestore';
 
 const auth = getAuth();
 // const storage = getStorage(app);
@@ -17,15 +17,16 @@ async function handleUserNameChange(userName, setMsg, setIsSaveBtnLoading, image
 	updateProfile(user, { displayName: userName.trim() })
 		.then(() => {
 			const oldData = JSON.parse(localStorage.getItem('user_details'));
-			const docRef = doc(database, "user_info", oldData?.registration_no);
+			const docRef = doc(database, 'user_info', oldData?.registration_no);
 			updateDoc(docRef, {
-				userName: userName.trim()
+				userName: userName.trim(),
 			})
 				.then(() => {
 					localStorage.setItem('user_details', JSON.stringify({ ...oldData, userName }));
 					setMsg('Changed successfully');
 					if (!imageUpload) setIsSaveBtnLoading(false);
-				}).catch((err) => {
+				})
+				.catch((err) => {
 					console.log(err.code);
 					setMsg(err.code);
 				});
@@ -55,17 +56,15 @@ function handleUserProfileChange(imageUpload, setProfilePictureUrl, setMsg, setI
 					setProfilePictureUrl(downloadURL);
 					localStorage.setItem('user_profile_img', downloadURL);
 
-
 					try {
 						const oldData = JSON.parse(localStorage.getItem('user_details'));
-						const docRef = doc(database, "user_info", oldData?.registration_no);
+						const docRef = doc(database, 'user_info', oldData?.registration_no);
 						updateDoc(docRef, {
-							profilePictureUrl: downloadURL
-						})
+							profilePictureUrl: downloadURL,
+						});
 					} catch (err) {
 						console.log(err);
 					}
-
 
 					const user = auth.currentUser;
 
@@ -98,11 +97,11 @@ function handlePasswordChange(changePasswordData, setChangePasswordMsg, setIsCha
 	console.log(changePasswordData);
 
 	if (!currentPassword || !newPassword || !confPassword)
-		return (setChangePasswordMsg('Please provide all detials'), setIsChangePasswordBtnLoading(false));
+		return setChangePasswordMsg('Please provide all detials'), setIsChangePasswordBtnLoading(false);
 	if (newPassword !== confPassword)
-		return (setChangePasswordMsg('Password does not match.'), setIsChangePasswordBtnLoading(false));
+		return setChangePasswordMsg('Password does not match.'), setIsChangePasswordBtnLoading(false);
 	if (currentPassword.length < 8 || newPassword.length < 8 || confPassword.length < 8)
-		return (setChangePasswordMsg('Password must be 8 digits.'), setIsChangePasswordBtnLoading(false));
+		return setChangePasswordMsg('Password must be 8 digits.'), setIsChangePasswordBtnLoading(false);
 
 	const user = auth.currentUser;
 	const credential = EmailAuthProvider.credential(auth.currentUser.email, currentPassword);
@@ -116,14 +115,13 @@ function handlePasswordChange(changePasswordData, setChangePasswordMsg, setIsCha
 
 					try {
 						const oldData = JSON.parse(localStorage.getItem('user_details'));
-						const docRef = doc(database, "user_info", oldData?.registration_no);
+						const docRef = doc(database, 'user_info', oldData?.registration_no);
 						updateDoc(docRef, {
-							password: newPassword
-						})
+							password: newPassword,
+						});
 					} catch (err) {
 						console.log(err);
 					}
-
 				})
 				.catch((err) => {
 					setIsChangePasswordBtnLoading(false);
