@@ -56,7 +56,7 @@ function SettingsPage() {
 	]);
 
 	useEffect(() => {
-		handleUserState('settingsPage');
+		handleUserState(true);
 		if (JSON.parse(localStorage.getItem('user_details'))) {
 			setIsPageLoaded(true);
 			document.title = 'SmartBCA | Settings ';
@@ -79,9 +79,9 @@ function SettingsPage() {
 			const newSettingsDrawerMenu = settingsDrawerMenu.map(function (items, i) {
 				return i === index
 					? {
-						...items,
-						isSelected: settingsDrawerMenu.i === menuName ? false : true,
-					}
+							...items,
+							isSelected: settingsDrawerMenu.i === menuName ? false : true,
+					  }
 					: { ...items, isSelected: false };
 			});
 

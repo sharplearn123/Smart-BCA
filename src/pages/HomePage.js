@@ -20,7 +20,6 @@ function HomePage() {
 	const [msg, setMsg] = useState({ text: '', type: '' });
 	const [isGetLoading, setIsGetLoading] = useState(false);
 	const [tableAllData, setTableAllData] = useState([]);
-	const [searchBoxText, setSearchBoxText] = useState('');
 
 	const handleMsgShown = useCallback((msgText, type) => {
 		if (msgText) {
@@ -34,14 +33,10 @@ function HomePage() {
 	}, []);
 
 	useEffect(() => {
-		handleUserState('homePage');
+		handleUserState(true);
 		document.title = 'SmartBCA | Home ';
 		getAllTableData(setTableAllData, setIsGetLoading, handleMsgShown);
 	}, [handleMsgShown]);
-
-	const handleSearch = useCallback(() => {
-		window.open(searchBoxText, '_self', false);
-	}, [searchBoxText]);
 
 	return (
 		<>
@@ -62,7 +57,7 @@ function HomePage() {
 							Section:- <span>D2308</span>
 						</div>
 					</div>
-					<div className="searchBox">
+					{/* <div className="searchBox">
 						<input
 							value={searchBoxText}
 							onChange={(e) => setSearchBoxText(e.target.value)}
@@ -75,7 +70,7 @@ function HomePage() {
 							placeholder="Search Registration No."
 						/>
 						<SearchIcon sx={{ py: 0.5, pr: 1, cursor: 'pointer' }} onClick={handleSearch} />
-					</div>
+					</div> */}
 				</div>
 
 				<div className="tableSemesterTitle">Semester 1 | unit 1</div>

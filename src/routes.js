@@ -28,8 +28,16 @@ function Routes() {
 				<Route exact path="/register" element={<CreateAcc />} />
 				<Route exact path="/forget-password" element={<ForgetPasswordPage />} />
 				<Route exact path="/settings" element={<SettingsPage />} />
+				<Route exact path="/user/*" element={<UserProfilePage />} />
 
-				<Route path="*" element={<UserProfilePage />} />
+				<Route
+					path="*"
+					element={
+						<center>
+							<h1>Page not Found</h1>
+						</center>
+					}
+				/>
 			</Switch>
 		</Suspense>
 	);

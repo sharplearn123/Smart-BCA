@@ -30,36 +30,6 @@
 	font-weight: bold;
 }
 
-.searchBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 40%;
-	margin-right: 20px;
-	background-color: #e8c39e;
-	border-radius: 5px;
-	border: 1px solid #83b5d8;
-}
-
-.searchBox input {
-	width: 100%;
-	height: 40px;
-	font-size: 18px;
-	border-radius: 5px;
-	outline: unset;
-	padding: 0 10px;
-	border: unset;
-	background-color: unset;
-}
-
-.searchBox:hover {
-	border: 1px solid #fc7a00;
-}
-
-.searchBox:focus {
-	border: rgb(255, 166, 0) 2px solid;
-}
-
 .tableSemesterTitle {
 	font-size: 40px;
 	margin-top: 20px;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { handleSignOut } from '../../../firebase/auth';
+import UserSearchBox from '../../UserSearchBox/UserSearchBox';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Logout from '@mui/icons-material/Logout';
 import Settings from '@mui/icons-material/Settings';
+import SearchIcon from '@mui/icons-material/Search';
 
 import logoSizeM from '../../../images/logoSizeL.png';
 import defultProfilePicture from '../../../images/defultProfilePicture.jpeg';
@@ -50,15 +52,17 @@ function NavBar() {
 	}, []);
 
 	return (
-		<Box sx={{ display: 'flex' }} className={isbarScrolled ? 'barColored' : 'barColored'}>
+		<>
 			<AppBar
 				sx={isbarScrolled ? { bgcolor: null, minHeight: 'unset' } : { bgcolor: 'unset', minHeight: 'unset' }}
 			>
-				<Toolbar>
-					<div className="brandName">
+				<div className="navBar">
+					<NavLink to="/" className="brandName">
 						<img src={logoSizeM} alt="" />
 						SmartBCA
-					</div>
+					</NavLink>
+
+					<UserSearchBox />
 
 					<Box sx={{ display: { display: 'flex', alignItems: 'center' } }}>
 						<IconButton
@@ -82,7 +86,7 @@ function NavBar() {
 						{JSON.parse(localStorage.getItem('user_details'))?.userName} <br />
 						{JSON.parse(localStorage.getItem('user_details'))?.registration_no}
 					</Box>
-				</Toolbar>
+				</div>
 			</AppBar>
 
 			{/* settings notes */}
@@ -131,7 +135,7 @@ function NavBar() {
 					Logout
 				</MenuItem>
 			</Menu>
-		</Box>
+		</>
 	);
 }
 

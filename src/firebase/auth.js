@@ -166,15 +166,13 @@ async function handleForgetPassword(e, setMsg, setIsOTPApiLoading) {
 		});
 }
 
-function handleUserState(currentPage) {
-	if (!currentPage) return console.log('Missing currentPage');
-
+function handleUserState(isLogined) {
 	onAuthStateChanged(auth, (user) => {
-		if (currentPage === 'loginPage' && user !== null) {
+		if (!isLogined && user !== null) {
 			document.location.href = '/home';
 		} else if (user_details?.email !== user?.email || user_details?.userId !== user?.uid) {
 			handleSignOut();
-		} else if ((currentPage === 'homePage' && user === null) || (currentPage === 'settingsPage' && user === null)) {
+		} else if (isLogined && user === null) {
 			handleSignOut();
 		}
 	});

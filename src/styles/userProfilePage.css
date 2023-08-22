@@ -1,0 +1,51 @@
+.userProfilePage {
+	margin: 20px;
+}
+
+.homePageBackground {
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background: linear-gradient(135deg, rgb(27, 26, 26) 5%, rgb(53, 35, 20) 40%, rgba(255, 145, 10, 1) 100%);
+}
+
+.userProfileContainer {
+	display: flex;
+	/* align-items: center; */
+	/* justify-content: center; */
+}
+
+.userProfilePageProfilePic {
+	min-width: 300px;
+	max-width: 300px;
+	min-height: 300px;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 5px;
+	box-shadow: 0px 0px 20px 0px rgba(235, 129, 0, 0.226);
+	cursor: pointer;
+	margin-right: 20px;
+}
+
+.userProfileDetailsBox {
+	display: flex;
+	align-items: start;
+	justify-content: space-between;
+	flex-grow: 1;
+}
+
+.userProfileDetails {
+	font-size: 1.3rem;
+	font-weight: 500;
+	margin: 5px 0px;
+}
+
+.userProfileDetails span {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-right: 5px;
+}
