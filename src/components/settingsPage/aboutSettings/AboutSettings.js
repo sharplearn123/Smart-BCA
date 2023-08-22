@@ -5,16 +5,18 @@ import './aboutSettings.css';
 function AboutSettings() {
 	return (
 		<div className="aboutSettings">
-			<div className="aboutSettingsTitle">What's New :-</div>
-			<li>Our new version 2.1.0 has been released.</li>
-			<li>Introduced our new UI for a better user experience.</li>
-			<li>Now we have migrated to Firebase for fast and secure database connections.</li>
-			<li>You can now store both to-do and note types in the same file.</li>
-			<li>Optimize for fast and smooth performance.</li>
-
-			<a href="https://www.bhemu.live/about" target="_blank" className="aboutdeveloperTitle" rel="noreferrer">
-				About developer 🔗
-			</a>
+			<div className='aboutDevloperSection'>
+				<div className="aboutDeveloperTitle">About developer</div>
+				<div>Developed by pushpanjay patel</div>
+				<div>Group :- 2</div>
+				<div>Section:- D2308</div>
+				<div>Roll no:- 39</div>
+			</div>
+			<div className='contactSection'>
+				<div className="contactSectionTitle">Contact us on:-</div>
+				<div>Whatsapp - 9534059189</div>
+				<div>Instagram- <a href='https://www.instagram.com/pushpanjaypatel/'>@pushpanjaypatel</a></div>
+			</div>
 		</div>
 	);
 }
