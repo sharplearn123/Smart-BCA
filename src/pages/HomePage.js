@@ -3,11 +3,10 @@ import { handleUserState } from '../firebase/auth';
 import { getAllTableData } from '../firebase//home.js';
 
 import NavBar from '../components/Bar/NavBar/NavBar';
-// import FootBar from '../components/Bar/Footer/Footer';
+import FootBar from '../components/Bar/Footer/Footer';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import Table from '../components/Table/Table.js';
 import Toolbar from '@mui/material/Toolbar';
-import SearchIcon from '@mui/icons-material/Search';
 
 import '../styles/homePage.css';
 
@@ -86,7 +85,7 @@ function HomePage() {
 				/>
 			</div>
 
-			{/* <FootBar /> */}
+			<FootBar />
 			{msg && <ShowMsg isError={msg?.text ? true : false} msgText={msg?.text} type={msg?.type} />}
 		</>
 	);

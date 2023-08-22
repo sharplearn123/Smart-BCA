@@ -71,15 +71,17 @@ function UserProfilePage() {
 							{searchedUserData?.userName}
 						</div>
 					</div>
-					<Tooltip
-						title={<span style={{ fontSize: '17px', padding: '5px' }}>{shareBtnTooltip}</span>}
-						sx={{ fontSize: 20, mr: 10 }}
-						arrow
-					>
-						<IconButton aria-label="delete" onClick={handleShareBtnClick}>
-							<IosShareIcon />
-						</IconButton>
-					</Tooltip>
+					<div>
+						<Tooltip
+							title={<span style={{ fontSize: '17px', padding: '5px' }}>{shareBtnTooltip}</span>}
+							sx={{ fontSize: 20, mr: 10 }}
+							arrow
+						>
+							<IconButton aria-label="share" size="large" onClick={handleShareBtnClick}>
+								<IosShareIcon />
+							</IconButton>
+						</Tooltip>
+					</div>
 				</div>
 			</div>
 

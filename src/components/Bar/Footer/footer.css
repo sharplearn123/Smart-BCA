@@ -1,14 +1,11 @@
 #bottomBar {
-	background-color: rgb(29, 27, 27);
-	color: white;
-	width: 100%;
-	min-height: 150px;
-	padding: 20px 0;
-}
-
-.pcFooter {
 	display: flex;
 	justify-content: space-between;
+	background-color: rgb(29, 27, 27);
+	color: white;
+	font-size: 15px;
+	width: 100%;
+	min-height: 150px;
 }
 
 #bottomBar a {
@@ -16,97 +13,84 @@
 	text-decoration: none;
 }
 
-#bottomBar a:hover {
-	text-decoration: underline;
-}
-
-.footerLeftSection {
-	/* background-color: red; */
+#footMemu {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	margin-top: 15px;
 	width: 33.5%;
 	letter-spacing: 1px;
 }
 
-.footerCoursesTitle {
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 5px;
+#footMemu a {
+	display: inline-block;
+	width: fit-content;
+	padding: 6px 15px;
 }
 
-.footerLeftSection a {
-	padding: 2.5px 0;
-}
-
-.footerMiddleSection {
-	/* background-color: green; */
+#footLogo {
 	text-align: center;
 	width: 33%;
+	margin-top: 15px;
 	font-size: 13px;
 }
 
-.footerBottomSectionPh {
-	display: none;
-}
-
-.footerPageNavigation {
+#footSocial {
 	display: flex;
-	align-items: center;
-	justify-content: space-around;
-}
-
-.footerPageNavigation a {
-	font-size: 20px;
-	padding: 5px 10px;
-}
-
-.footerLogo {
-	height: 70px;
+	justify-content: flex-end;
 	margin-top: 10px;
-}
-
-.footerRightSection {
-	/* background-color: blue; */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	width: 33.5%;
 }
 
-.footerSocialTitle {
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 5px;
+#footSocial a {
+	display: flex;
+	align-items: center;
+	padding: 10px 15px;
+	height: fit-content;
+	width: fit-content;
 }
 
-.footerRightSection a {
-	padding: 2.5px 0;
+#footSocial img {
+	margin-right: 5px;
 }
 
-@media screen and (max-width: 1000px) {
-	.pcFooter {
-		justify-content: space-around;
+/* ..........................mWeb.......................... */
+@media screen and (max-width: 931px) {
+	#footMemu {
+		flex-direction: column;
+		width: 32%;
 	}
 
-	.footerMiddleSection {
-		display: none;
+	#footLogo img {
+		margin-top: 5px;
+		height: 60px;
 	}
 
-	.footerBottomSectionPh {
-		display: block;
-		border-top: solid hsla(0, 0%, 100%, 0.3);
-		margin-top: 20px;
-		padding-top: 20px;
-		text-align: center;
+	#footSocial {
+		flex-direction: column;
+		justify-content: unset;
+		align-items: end;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	#bottomBar {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.footerPageNavigation a {
-		font-size: 17px;
-		font-weight: 500;
+	#footMemu {
+		width: 100%;
 	}
 
-	.footerLogoContainer {
-		font-size: 13px;
+	#footLogo {
+		width: unset;
+	}
+
+	#footSocial {
+		width: 100%;
+	}
+
+	#footSocial a {
+		padding: 5px 15px;
 	}
 }

@@ -1,60 +1,53 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import logoImg from '../../../images/logoSizeM.png';
-// import googleImg from './img/google.png';
-// import youtubeImg from './img/youtubeWhite.svg';
+import logoImg from '../../../images/logoSizeS.png';
+import googleImg from '../../../images/socialIcons/google.png';
+import instagramImg from '../../../images/socialIcons/instagramWhite.svg';
 
 import './footer.css';
 
 function FootBar() {
 	return (
 		<div id="bottomBar">
-			<div className="pcFooter">
-				<div className="footerLeftSection">
-					<div className="footerCoursesTitle">Courses</div>
-					<NavLink to="/">Course 1</NavLink>
-					<NavLink to="/">Course 2</NavLink>
-					<NavLink to="/">Course 3</NavLink>
-				</div>
-
-				<div className="footerMiddleSection">
-					<div className="footerPageNavigation">
-						<NavLink to="/">Home</NavLink>
-						<NavLink to="/about">About</NavLink>
-						<NavLink to="/contact">Contact</NavLink>
-						<NavLink to="/cart">Cart</NavLink>
-					</div>
-					<div className="footerLogoContainer">
-						<img className="footerLogo" src={logoImg} alt="" />
-						<div>© 2022-25 (V 1.0)</div>
-						<div>Developed by SharpLearn Team</div>
-					</div>
-				</div>
-
-				<div className="footerRightSection">
-					<div className="footerSocialTitle">Social</div>
-					<a href="mailto:sharplearn0@gmail.com' target='_blank' rel='noreferrer">@sharplearn</a>
-					<a href="https://www.youtube.com/channel/UC9jZsQkYm4xXQlB2gXnYQjw" target="_blank" rel="noreferrer">
-						YouTube
-					</a>
-					<a href="https://www.instagram.com/sharplearn0/" target="_blank" rel="noreferrer">
-						Instagram
-					</a>
-				</div>
+			<div id="footMemu">
+				<NavLink to="/home">Home</NavLink>
+				<NavLink to="/settings">Settings</NavLink>
 			</div>
-			<div className="footerBottomSectionPh">
-				<div className="footerPageNavigation">
-					<NavLink to="/">Home</NavLink>
-					<NavLink to="/about">About</NavLink>
-					<NavLink to="/contact">Contact</NavLink>
-					<NavLink to="/cart">Cart</NavLink>
-				</div>
-				<div className="footerLogoContainer">
-					<img className="footerLogo" src={logoImg} alt="" />
-					<div>© 2022-25 (V 1.0)</div>
-					<div>Developed by SharpLearn Team</div>
-				</div>
+
+			<div id="footLogo">
+				<img src={logoImg} alt="" />
+				<div>© 2023-25 (V 1.1)</div>
+				<div>Developed by Pushpanjay Patel</div>
+			</div>
+
+			<div id="footSocial">
+				<a href="mailto:pushpanjaypatel02766@gmail.com" target="_blank" rel="noreferrer">
+					<img src={googleImg} height="22px" alt="" />
+					<div>@pushpanjay</div>
+				</a>
+
+				<a href="https://github.com/Pushpanjay10" target="_blank" rel="noreferrer">
+					<svg
+						height="18"
+						fill="white"
+						style={{ marginRight: '5px' }}
+						viewBox="0 0 16 16"
+						version="1.1"
+						id="git"
+					>
+						<path
+							fillRule="evenodd"
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+						></path>
+					</svg>
+					<div>GitHub</div>
+				</a>
+
+				<a href="https://www.instagram.com/pushpanjaypatel/" target="_blank" rel="noreferrer">
+					<img src={instagramImg} height="18px" alt="" />
+					<div>instagram</div>
+				</a>
 			</div>
 		</div>
 	);
