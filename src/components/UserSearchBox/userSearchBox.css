@@ -3,10 +3,10 @@
 	justify-content: center;
 	align-items: center;
 	width: 40%;
-	margin-right: 20px;
 	background-color: #e8c39e4d;
 	border-radius: 5px;
 	border: 1px solid unset;
+	margin-right: 20px;
 }
 
 .searchBox:hover {
@@ -31,4 +31,16 @@
 
 .searchBox input::placeholder {
 	color: rgb(189, 189, 189);
+}
+
+@media screen and (max-width: 700px) {
+	.searchBox {
+		width: 100%;
+		margin-right: 10px;
+	}
+
+	.searchBox input {
+		height: 30px;
+		font-size: 15px;
+	}
 }

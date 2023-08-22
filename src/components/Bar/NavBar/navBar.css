@@ -26,10 +26,16 @@
 	transition-duration: 0.5s;
 }
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 700px) {
+	.navBar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px 10px;
+	}
+
 	.brandName {
-		font-size: 17px;
-		margin-left: -10px;
+		display: none;
 	}
 
 	.brandName img {
@@ -38,7 +44,7 @@
 		margin-right: 5px;
 	}
 
-	.phoneAddNewCourse {
-		font-size: 12px !important;
+	.userNavBarDetails {
+		font-size: 15px;
 	}
 }

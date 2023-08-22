@@ -8,14 +8,12 @@ import UserSearchBox from '../../UserSearchBox/UserSearchBox';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Logout from '@mui/icons-material/Logout';
 import Settings from '@mui/icons-material/Settings';
-import SearchIcon from '@mui/icons-material/Search';
 
 import logoSizeM from '../../../images/logoSizeL.png';
 import defultProfilePicture from '../../../images/defultProfilePicture.jpeg';
@@ -83,8 +81,12 @@ function NavBar() {
 								alt="logo"
 							/>
 						</IconButton>
-						{JSON.parse(localStorage.getItem('user_details'))?.userName} <br />
-						{JSON.parse(localStorage.getItem('user_details'))?.registration_no}
+						<div className="userNavBarDetails">
+							<div>{JSON.parse(localStorage.getItem('user_details'))?.registration_no}</div>
+							<div>
+								{JSON.parse(localStorage.getItem('user_details'))?.userName} <br />
+							</div>
+						</div>
 					</Box>
 				</div>
 			</AppBar>

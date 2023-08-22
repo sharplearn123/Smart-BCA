@@ -8,7 +8,8 @@ function UserSearchBox() {
 	const [searchBoxText, setSearchBoxText] = useState('');
 
 	const handleSearch = useCallback(() => {
-		window.open('user/' + searchBoxText, '_self', false);
+		if (searchBoxText.trim() === '') return;
+		window.open(window.location?.origin + '/user/' + searchBoxText, '_self', false);
 	}, [searchBoxText]);
 
 	return (

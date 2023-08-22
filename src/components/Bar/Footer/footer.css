@@ -1,7 +1,8 @@
 #bottomBar {
 	display: flex;
 	justify-content: space-between;
-	background-color: rgb(29, 27, 27);
+	backdrop-filter: saturate(180%) blur(5px);
+	background-color: rgba(59, 59, 59, 0.5);
 	color: white;
 	font-size: 15px;
 	width: 100%;

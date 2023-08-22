@@ -12,10 +12,18 @@ const database = getFirestore();
 // const userId = JSON.parse(localStorage.getItem('user_details'))?.userId || '';
 
 //get all table data
-async function getSearchedUser(registration_no, setSearchedUserData, handleMsgShown) {
+async function getSearchedUser(registration_no, setSearchedUserData, handleMsgShown, setIsGetApiLoading) {
+	setIsGetApiLoading(true);
 	const docRef = doc(database, 'user_info', registration_no);
-	const docSnap = await getDoc(docRef);
-	setSearchedUserData(docSnap?.data());
+	await getDoc(docRef)
+		.then((docSnap) => {
+			setSearchedUserData(docSnap?.data());
+			setIsGetApiLoading(false);
+		})
+		.catch((error) => {
+			handleMsgShown(error, 'error');
+			console.log(error);
+			setIsGetApiLoading(false);
+		});
 }
-
 export { getSearchedUser };

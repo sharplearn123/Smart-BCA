@@ -56,20 +56,6 @@ function HomePage() {
 							Section:- <span>D2308</span>
 						</div>
 					</div>
-					{/* <div className="searchBox">
-						<input
-							value={searchBoxText}
-							onChange={(e) => setSearchBoxText(e.target.value)}
-							onKeyDown={(e) => {
-								if (e.keyCode === 13 || e.which === 13) {
-									handleSearch();
-								}
-							}}
-							type="text"
-							placeholder="Search Registration No."
-						/>
-						<SearchIcon sx={{ py: 0.5, pr: 1, cursor: 'pointer' }} onClick={handleSearch} />
-					</div> */}
 				</div>
 
 				<div className="tableSemesterTitle">Semester 1 | unit 1</div>
