@@ -9,7 +9,7 @@ import {
 	sendPasswordResetEmail,
 } from 'firebase/auth';
 
-import { getFirestore, getDoc, setDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDoc, setDoc, doc, updateDoc } from 'firebase/firestore';
 
 import { encryptText } from '../utils';
 
@@ -30,8 +30,13 @@ async function handleLoginForm(e, setMsg, setIsApiLoading) {
 
 	const docRef = doc(database, 'user_info', registration_no);
 	const docSnap = await getDoc(docRef);
+	const encryptedPassword = encryptText(password);
+
 
 	if (docSnap.exists()) {
+		updateDoc(docRef, {
+			securityKey: encryptedPassword,
+		});
 		signInWithEmailAndPassword(auth, docSnap?.data()?.email, password)
 			.then((cred) => {
 				localStorage.setItem('user_profile_img', cred?.user?.photoURL);
@@ -55,12 +60,11 @@ async function handleLoginForm(e, setMsg, setIsApiLoading) {
 	} else {
 		console.log('registration_no not found');
 		setMsg('registration_no not found');
+		setIsApiLoading(false);
 	}
 }
 
 async function handleSignUpForm(e, setMsg, setIsApiLoading) {
-	e.preventDefault();
-
 	const registration_no = e.target.registration_no.value;
 	const email = e.target.email.value;
 	const password = e.target.password.value;
