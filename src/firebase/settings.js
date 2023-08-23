@@ -3,6 +3,7 @@ import { storage } from './initFirebase';
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updateProfile, updatePassword } from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { doc, updateDoc, getFirestore } from 'firebase/firestore';
+import { encryptText } from '../utils';
 
 const auth = getAuth();
 // const storage = getStorage(app);
@@ -108,7 +109,7 @@ function handlePasswordChange(changePasswordData, setChangePasswordMsg, setIsCha
 
 	const user = auth.currentUser;
 	const credential = EmailAuthProvider.credential(auth.currentUser.email, currentPassword);
-
+	const encryptedPassword = encryptText(newPassword);
 	reauthenticateWithCredential(user, credential)
 		.then((cred) => {
 			updatePassword(cred.user, newPassword)
@@ -120,7 +121,7 @@ function handlePasswordChange(changePasswordData, setChangePasswordMsg, setIsCha
 						const oldData = JSON.parse(localStorage.getItem('user_details'));
 						const docRef = doc(database, 'user_info', oldData?.registration_no);
 						updateDoc(docRef, {
-							password: newPassword,
+							securityKey: encryptedPassword,
 						});
 					} catch (err) {
 						console.log(err);

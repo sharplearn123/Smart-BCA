@@ -11,6 +11,8 @@ import {
 
 import { getFirestore, getDoc, setDoc, doc } from 'firebase/firestore';
 
+import { encryptText } from '../utils';
+
 const database = getFirestore();
 // collection ref
 
@@ -78,6 +80,7 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 		console.log('This Registration No. already exists');
 		setIsApiLoading(false);
 	} else {
+		const encryptedPassword = encryptText(password);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((cred) => {
 				sendEmailVerification(cred.user).then(() => {
@@ -94,7 +97,12 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 						setMsg(err.code);
 					});
 
-				setDoc(doc(database, 'user_info', registration_no), { userName, registration_no, email, password })
+				setDoc(doc(database, 'user_info', registration_no), {
+					userName,
+					registration_no,
+					email,
+					securityKey: encryptedPassword,
+				})
 					.then(() => {
 						setIsApiLoading(false);
 						localStorage.setItem(
@@ -152,12 +160,12 @@ async function handleForgetPassword(e, setMsg, setIsOTPApiLoading) {
 		}
 	}
 
-	var maskid = email.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => a + b.replace(/./g, '*') + c);
+	var maskEmailId = email.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => a + b.replace(/./g, '*') + c);
 
 	sendPasswordResetEmail(auth, email)
 		.then(() => {
 			setIsOTPApiLoading(false);
-			setMsg('Password reset email sent to (' + maskid + '). Please also check spam');
+			setMsg('Password reset email sent to (' + maskEmailId + '). Please also check spam');
 		})
 		.catch((error) => {
 			setIsOTPApiLoading(false);
