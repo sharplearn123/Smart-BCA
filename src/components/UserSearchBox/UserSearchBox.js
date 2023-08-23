@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import './userSearchBox.css';
 
-function UserSearchBox() {
+function UserSearchBox({ sx, newClass }) {
 	const [searchBoxText, setSearchBoxText] = useState('');
 
 	const handleSearch = useCallback(() => {
@@ -13,7 +13,7 @@ function UserSearchBox() {
 	}, [searchBoxText]);
 
 	return (
-		<div className="searchBox">
+		<div className={'searchBox ' + newClass} style={sx}>
 			<input
 				value={searchBoxText}
 				onChange={(e) => setSearchBoxText(e.target.value)}

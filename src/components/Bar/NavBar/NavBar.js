@@ -60,7 +60,7 @@ function NavBar() {
 						SmartBCA
 					</NavLink>
 
-					<UserSearchBox />
+					<UserSearchBox newClass={'navBarSearchBox'} />
 
 					<Box sx={{ display: { display: 'flex', alignItems: 'center' } }}>
 						<IconButton

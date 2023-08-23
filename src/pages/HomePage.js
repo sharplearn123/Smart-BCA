@@ -6,6 +6,8 @@ import NavBar from '../components/Bar/NavBar/NavBar';
 import FootBar from '../components/Bar/Footer/Footer';
 import ShowMsg from '../components/ShowMsg/ShowMsg.js';
 import Table from '../components/Table/Table.js';
+import UserSearchBox from '../components/UserSearchBox/UserSearchBox';
+
 import Toolbar from '@mui/material/Toolbar';
 
 import '../styles/homePage.css';
@@ -57,6 +59,7 @@ function HomePage() {
 						</div>
 					</div>
 				</div>
+				<UserSearchBox newClass="homePageSearchBox" />
 
 				<div className="tableSemesterTitle">Semester 1 | unit 1</div>
 				<Table

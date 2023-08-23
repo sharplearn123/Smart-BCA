@@ -31,6 +31,10 @@
 	font-weight: bold;
 }
 
+.homePageSearchBox {
+	display: none;
+}
+
 .tableSemesterTitle {
 	font-size: 40px;
 	margin-top: 20px;
@@ -39,15 +43,6 @@
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-
-/* .classSection {
-	text-align: end;
-}
-
-.classSection span {
-	color: #fc7a00;
-	font-weight: bold;
-} */
 
 /* ------------M-web----------- */
 @media screen and (max-width: 700px) {
@@ -63,6 +58,11 @@
 
 	.programName {
 		font-size: 15px;
+	}
+
+	.homePageSearchBox {
+		display: flex;
+		margin: unset;
 	}
 
 	.tableSemesterTitle {
