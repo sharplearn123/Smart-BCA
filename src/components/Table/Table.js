@@ -134,7 +134,7 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 						</a>
 
 						{supurUser && (
-							<div className="column" style={{ width: `${100 / tableTitle.length}%` }}>
+							<div className="column rowEditBtn" style={{ width: `${100 / tableTitle.length}%` }}>
 								<IconButton
 									size="small"
 									sx={{ py: 0, px: 5 }}

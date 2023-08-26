@@ -101,7 +101,7 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 						setMsg(err.code);
 					});
 
-				setDoc(doc(database, 'user_info', registration_no), {
+				setDoc(docRef, {
 					userName,
 					registration_no,
 					email,

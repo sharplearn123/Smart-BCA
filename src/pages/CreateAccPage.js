@@ -13,6 +13,7 @@ function CreateAcc() {
 	const [isApiLoading, setIsApiLoading] = useState(false);
 
 	const handleUserSignUpForm = useCallback((e) => {
+		e.preventDefault();
 		handleSignUpForm(e, setMsg, setIsApiLoading);
 	}, []);
 

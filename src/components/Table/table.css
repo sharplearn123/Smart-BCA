@@ -43,7 +43,10 @@
 
 .column:last-child {
 	border-right: none;
-	overflow: unset;
+}
+
+.rowEditBtn {
+	text-overflow: unset;
 }
 
 /* ------------M-web----------- */
