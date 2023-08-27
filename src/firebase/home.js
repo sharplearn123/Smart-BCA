@@ -18,7 +18,7 @@ const colRef = collection(database, 'subject_table');
 
 // const userId = JSON.parse(localStorage.getItem('user_details'))?.userId || '';
 
-//get all table data
+//get all table data-----Read
 function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
 	const getDataQuery = query(colRef, orderBy('subject')); // orderBy('name', 'desc || ase')
 	setIsGetLoading(true);
@@ -35,6 +35,7 @@ function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
 							ppt: doc.data()?.ppt,
 							syllabus: doc.data()?.syllabus,
 							notes: doc.data()?.notes,
+							books: doc.data()?.books,
 
 							updatedOn: doc.data()?.updatedOn,
 						});
@@ -56,11 +57,11 @@ function getAllTableData(setAllCourses, setIsGetLoading, handleMsgShown) {
 	);
 }
 
-// //Add row to Database
+//Add row to Database-----Create
 function addNewTableRow(incomingData, handleModalToggle, setIsAddBtnLoading, handleMsgShown) {
-	const { subject, ppt, notes, syllabus } = incomingData;
+	const { subject, syllabus, ppt, notes, books } = incomingData;
 
-	if (!subject?.trim() || !ppt?.trim() || !notes?.trim() || !syllabus?.trim()) {
+	if (!subject?.trim() || !syllabus?.trim() || !ppt?.trim() || !notes?.trim() || !books?.trim) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
@@ -81,7 +82,7 @@ function addNewTableRow(incomingData, handleModalToggle, setIsAddBtnLoading, han
 		});
 }
 
-//delete table row
+//delete table row-----Delete
 function deleteTableRow(rowId, handleModalToggle, handleMsgShown) {
 	if (!rowId) {
 		handleMsgShown('Please Provide all details', 'error');
@@ -101,15 +102,20 @@ function deleteTableRow(rowId, handleModalToggle, handleMsgShown) {
 		});
 }
 
-//update Table Details
+//update Table Details-----Update
 function updateTableDetails(incomingData, setIsSaveLoading, handleMsgShown) {
-	const { rowId, subject, ppt, notes, syllabus } = incomingData;
+	const { rowId, syllabus, subject, ppt, notes, books } = incomingData;
 
-	if (!rowId || !subject || !ppt || !notes || !syllabus) {
+	if (!rowId?.trim()) {
+		handleMsgShown('Missing rowId', 'error');
+		console.log('Missing rowId');
+		return;
+	} else if (!subject?.trim() || !syllabus?.trim() || !ppt?.trim() || !notes?.trim() || !books?.trim) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
 	}
+
 	setIsSaveLoading(true);
 	const docRef = doc(database, 'subject_table', rowId);
 

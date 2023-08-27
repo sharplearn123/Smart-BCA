@@ -68,8 +68,8 @@ function HomePage() {
 					supurUser={supurUser ? true : false}
 					tableTitle={
 						supurUser
-							? ['Subject', 'Syllabus', 'PPT', 'Notes', 'Edit/Add']
-							: ['Subject', 'Syllabus', 'PPT', 'Notes']
+							? ['Subject', 'Syllabus', 'PPT', 'Notes', 'Books', 'Edit/Add']
+							: ['Subject', 'Syllabus', 'PPT', 'Notes', 'Books']
 					}
 				/>
 			</div>

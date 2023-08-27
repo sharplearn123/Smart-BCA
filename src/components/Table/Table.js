@@ -33,8 +33,8 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 	}, []);
 
 	const handleModalToggle = useCallback((modalType) => {
+		setOpenModalData({});
 		setIsModalOpen((state) => {
-			setOpenModalData({});
 			return { ...state, isOpen: !state.isOpen, modalType: modalType };
 		});
 	}, []);
@@ -114,6 +114,7 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 						>
 							{item?.syllabus}
 						</a>
+
 						<a
 							href={item?.ppt}
 							target="_blank"
@@ -123,6 +124,7 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 						>
 							{item?.ppt}
 						</a>
+
 						<a
 							href={item?.notes}
 							target="_blank"
@@ -131,6 +133,16 @@ function Table({ isGetLoading, tableAllData, tableTitle, supurUser }) {
 							style={{ width: `${100 / tableTitle.length}%` }}
 						>
 							{item?.notes}
+						</a>
+
+						<a
+							href={item?.books}
+							target="_blank"
+							rel="noreferrer"
+							className="column"
+							style={{ width: `${100 / tableTitle.length}%` }}
+						>
+							{item?.books}
 						</a>
 
 						{supurUser && (

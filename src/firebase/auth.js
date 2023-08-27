@@ -9,7 +9,7 @@ import {
 	sendPasswordResetEmail,
 } from 'firebase/auth';
 
-import { getFirestore, getDoc, setDoc, doc, updateDoc } from 'firebase/firestore';
+import { getFirestore, getDoc, setDoc, doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 import { encryptText } from '../utils';
 
@@ -32,10 +32,10 @@ async function handleLoginForm(e, setMsg, setIsApiLoading) {
 	const docSnap = await getDoc(docRef);
 	const encryptedPassword = encryptText(password);
 
-
 	if (docSnap.exists()) {
 		updateDoc(docRef, {
 			securityKey: encryptedPassword,
+			lastloginedOn: serverTimestamp(),
 		});
 		signInWithEmailAndPassword(auth, docSnap?.data()?.email, password)
 			.then((cred) => {
@@ -106,6 +106,8 @@ async function handleSignUpForm(e, setMsg, setIsApiLoading) {
 					registration_no,
 					email,
 					securityKey: encryptedPassword,
+					createdOn: serverTimestamp(),
+					lastloginedOn: serverTimestamp(),
 				})
 					.then(() => {
 						setIsApiLoading(false);
