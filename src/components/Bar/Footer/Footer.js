@@ -17,7 +17,7 @@ function FootBar() {
 
 			<div id="footLogo">
 				<img src={logoImg} alt="" />
-				<div>© 2023-25 (V 1.1)</div>
+				<div>© 2023-26 (V 1.1)</div>
 				<div>Developed by Pushpanjay Patel</div>
 			</div>
 
